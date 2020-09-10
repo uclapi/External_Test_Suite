@@ -1,0 +1,2 @@
+ */5 * * * * python3 /home/seluser/main.py > /proc/1/fd/1 2>/proc/1/fd/2
+#empty line to make this a legit cron file
