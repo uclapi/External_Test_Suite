@@ -84,9 +84,9 @@ def get_incident_name(base: str) -> str:
 
     incident_name = ""
 
-    if settings.UCLAPI_DOMAIN_CURRENT == "staging.ninja":
+    if UCLAPI_DOMAIN_CURRENT == "staging.ninja":
         incident_name = base + "-Staging"
-    elif settings.UCLAPI_DOMAIN_CURRENT == "uclapi.com":
+    elif UCLAPI_DOMAIN_CURRENT == "uclapi.com":
         incident_name = base + "-Prod"
 
     return incident_name
@@ -111,15 +111,15 @@ def create_incident(error_message: str, component_name: str,
     :type comp_status: int
     """
 
-    cachet_client = cachetclient.Client(endpoint=settings.CACHET_URL,
-                                        api_token=settings.CACHET_TOKEN)
+    cachet_client = cachetclient.Client(endpoint=CACHET_URL,
+                                        api_token=CACHET_TOKEN)
 
     target_comp = _get_component(cachet_client, component_name)
 
     if target_comp.status == enums.COMPONENT_STATUS_OPERATIONAL:
 
         message = (f"{component_name} failed on "
-                   f"{settings.UCLAPI_DOMAIN_CURRENT}"
+                   f"{UCLAPI_DOMAIN_CURRENT}"
                    f" with error: {repr(error_message)}")
 
         cachet_client.incidents.create(
@@ -146,8 +146,8 @@ def update_incident(update_message: str, component_name: str,
     :type status: int
     """
 
-    cachet_client = cachetclient.Client(endpoint=settings.CACHET_URL,
-                                        api_token=settings.CACHET_TOKEN)
+    cachet_client = cachetclient.Client(endpoint=CACHET_URL,
+                                        api_token=CACHET_TOKEN)
 
     target_comp = _get_component(cachet_client, component_name)
 
