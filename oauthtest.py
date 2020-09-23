@@ -232,7 +232,7 @@ try:
     Login = driver.find_element_by_name("_eventId_proceed")
     Login.click()
 
-    time.sleep(3)
+    time.sleep(5)
 
     print(driver.current_url)
 
